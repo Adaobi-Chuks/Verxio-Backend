@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_configs_1 = require("../configs/constants.configs");
 const user_services_1 = __importDefault(require("../services/user.services"));
-const { create, findOne, editById, generateAuthToken } = new user_services_1.default();
-const { DUPLICATE_EMAIL, CREATED, UPDATED } = constants_configs_1.MESSAGES.USER;
+const { create, findOne, editById } = new user_services_1.default();
+const { DUPLICATE_EMAIL, CREATED, UPDATED, NOT_FOUND } = constants_configs_1.MESSAGES.USER;
 class UserController {
     createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -59,6 +59,24 @@ class UserController {
                     user: createdUser
                 });
             }
+        });
+    }
+    getUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield findOne({ _id: req.params._id });
+            if (user) {
+                return res.status(200)
+                    .send({
+                    success: true,
+                    message: UPDATED,
+                    user: user
+                });
+            }
+            return res.status(404)
+                .send({
+                success: false,
+                message: NOT_FOUND
+            });
         });
     }
 }

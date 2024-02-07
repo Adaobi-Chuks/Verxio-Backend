@@ -4,13 +4,13 @@ import UserService from "../services/user.services";
 const {
   create,
   findOne,
-  editById,
-  generateAuthToken
+  editById
 } = new UserService();
 const {
   DUPLICATE_EMAIL,
   CREATED,
-  UPDATED
+  UPDATED,
+  NOT_FOUND
 } = MESSAGES.USER;
 
 export default class UserController {
@@ -54,5 +54,22 @@ export default class UserController {
         user: createdUser
       });
     }
+  }
+  
+  async getUser(req: Request, res: Response) {
+    const user = await findOne({_id: req.params._id});
+    if (user) {
+      return res.status(200)
+      .send({
+        success: true,
+        message: UPDATED,
+        user: user
+      });
+    }
+    return res.status(404)
+      .send({
+        success: false,
+        message: NOT_FOUND
+      });
   }
 }

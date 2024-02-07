@@ -23,7 +23,8 @@ const MESSAGES = {
     USER: {
         CREATED: "Profile created successfully.",
         DUPLICATE_EMAIL: "Email already exist.",
-        UPDATED: "Profile details updated successfully",
+        UPDATED: "Profile details updated successfully.",
+        NOT_FOUND: "Profile not found."
     },
 };
 exports.MESSAGES = MESSAGES;

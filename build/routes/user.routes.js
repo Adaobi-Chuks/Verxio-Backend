@@ -8,7 +8,9 @@ const user_controllers_1 = __importDefault(require("../controllers/user.controll
 const validate_middleware_1 = __importDefault(require("../middlewares/validate.middleware"));
 const user_schemas_1 = require("../schemas/user.schemas");
 const router = (0, express_1.Router)();
-const { createUser, } = new user_controllers_1.default();
-//create/ update a user or signup
+const { createUser, getUser } = new user_controllers_1.default();
+//create or update a user
 router.put("/", (0, validate_middleware_1.default)(user_schemas_1.createSchema), createUser);
+//get a user
+router.put("/", getUser);
 exports.default = router;

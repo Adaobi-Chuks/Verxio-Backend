@@ -5,11 +5,13 @@ import { createSchema } from "../schemas/user.schemas";
 const router = Router();
 const {
     createUser,
+    getUser
 } = new UserController();
 
-//create/ update a user or signup
-router.put("/", 
-validate(createSchema), 
-createUser);
+//create or update a user
+router.put("/", validate(createSchema), createUser);
+
+//get a user
+router.put("/", getUser);
 
 export default router;
