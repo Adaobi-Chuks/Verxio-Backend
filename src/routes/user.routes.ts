@@ -9,7 +9,7 @@ const {
 
 //create/ update a user or signup
 router.put("/", 
-// validate(createSchema), 
+validate(createSchema), 
 createUser);
 
 export default router;

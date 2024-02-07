@@ -1,10 +1,15 @@
 import Joi from "joi";
 
 const createSchema = Joi.object({
-    username: Joi.string().required().min(3).max(100).trim(),
+    _id: Joi.string().required().trim(),
     email: Joi.string().email().required().lowercase().trim(),
-    password: Joi.string().required().min(6).max(50),
-    role: Joi.string().optional().valid("user", "admin")
+    firstName: Joi.string().required().trim(),
+    lastName: Joi.string().required().trim(),
+    profilePicUrl: Joi.string().required().trim(),
+    bio: Joi.string().required().trim(),
+    phoneNumber: Joi.string().required().trim(),
+    website: Joi.string().required().trim(),
+    powUrl: Joi.string().required().trim(),
 });
 
 export {

@@ -7,7 +7,17 @@ const userSchema = new Schema({
     required: true,
     trim: true
   },
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  profilePicUrl: {
     type: String,
     required: true,
     trim: true
