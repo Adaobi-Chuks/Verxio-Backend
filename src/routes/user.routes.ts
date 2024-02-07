@@ -12,6 +12,6 @@ const {
 router.put("/", validate(createSchema), createUser);
 
 //get a user
-router.put("/", getUser);
+router.get("/", getUser);
 
 export default router;
