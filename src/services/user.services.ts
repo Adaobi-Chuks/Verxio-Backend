@@ -1,8 +1,5 @@
-import { MAXAGE, SECRET } from "../configs/constants.configs";
 import IUser from "../interfaces/user.interfaces";
 import User from "../models/user.models";
-import jwt from "jsonwebtoken";
-const secret = process.env.SECRET!;
 
 export default class UserService {
     async create(user: Partial<IUser>) {
@@ -19,14 +16,4 @@ export default class UserService {
             return await User.findByIdAndUpdate(id, { $set: obj }, { new: true }).select("-password");
         }
     }
-
-    generateAuthToken (user: IUser) {
-        return jwt.sign({
-            id: user.id,
-            email: user.email,
-            role: user.role
-        }, secret, {
-            expiresIn: MAXAGE
-        });
-    }   
 }

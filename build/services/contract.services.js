@@ -12,25 +12,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_models_1 = __importDefault(require("../models/user.models"));
-class UserService {
+const contract_models_1 = __importDefault(require("../models/contract.models"));
+class ContractService {
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const createdUser = yield user_models_1.default.create(user);
-            return yield user_models_1.default.findOne({ _id: createdUser.id }, "-__v -password");
+            const createdContract = yield contract_models_1.default.create(user);
+            return yield contract_models_1.default.findOne({ _id: createdContract.id }, "-__v");
         });
     }
     findOne(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield user_models_1.default.findOne(param, "-__v");
+            return yield contract_models_1.default.findOne(param, "-__v");
+        });
+    }
+    find() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield contract_models_1.default.find({}, "-__v");
         });
     }
     editById(id, obj) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (yield user_models_1.default.findOne({ _id: id })) {
-                return yield user_models_1.default.findByIdAndUpdate(id, { $set: obj }, { new: true }).select("-password");
+            if (yield contract_models_1.default.findOne({ _id: id })) {
+                return yield contract_models_1.default.findByIdAndUpdate(id, { $set: obj }, { new: true });
             }
         });
     }
 }
-exports.default = UserService;
+exports.default = ContractService;

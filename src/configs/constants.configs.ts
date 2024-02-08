@@ -5,6 +5,8 @@ const MAXAGE = 3 * 24 * 60 * 60;
 const basePath = "/api/v1"
 const DATABASES = {
     USER: "user",
+    CONTRACT: "contract",
+    POST: "post"
 };
 const MESSAGES = {
     DATABASE: {

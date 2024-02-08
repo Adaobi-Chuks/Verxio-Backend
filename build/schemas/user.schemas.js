@@ -7,13 +7,13 @@ exports.createSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
 const createSchema = joi_1.default.object({
     _id: joi_1.default.string().required().trim(),
-    email: joi_1.default.string().email().required().lowercase().trim(),
-    firstName: joi_1.default.string().required().trim(),
-    lastName: joi_1.default.string().required().trim(),
-    profilePicUrl: joi_1.default.string().required().trim(),
-    bio: joi_1.default.string().required().trim(),
-    phoneNumber: joi_1.default.string().required().trim(),
-    website: joi_1.default.string().required().trim(),
-    powUrl: joi_1.default.string().required().trim(),
+    email: joi_1.default.string().email().optional().lowercase().trim(),
+    firstName: joi_1.default.string().optional().trim(),
+    lastName: joi_1.default.string().optional().trim(),
+    profilePicUrl: joi_1.default.string().optional().trim(),
+    bio: joi_1.default.string().optional().trim(),
+    phoneNumber: joi_1.default.string().optional().trim(),
+    website: joi_1.default.string().optional().trim(),
+    powUrl: joi_1.default.string().optional().trim(),
 });
 exports.createSchema = createSchema;

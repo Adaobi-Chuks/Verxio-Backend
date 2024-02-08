@@ -62,7 +62,7 @@ export default class UserController {
       return res.status(200)
       .send({
         success: true,
-        message: UPDATED,
+        message: "Profile fetched successfully",
         user: user
       });
     }

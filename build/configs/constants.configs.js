@@ -13,6 +13,8 @@ const basePath = "/api/v1";
 exports.basePath = basePath;
 const DATABASES = {
     USER: "user",
+    CONTRACT: "contract",
+    POST: "post"
 };
 exports.DATABASES = DATABASES;
 const MESSAGES = {

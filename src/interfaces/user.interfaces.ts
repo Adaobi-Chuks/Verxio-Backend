@@ -1,21 +1,11 @@
 export default interface IUser {
-    username: string;
+    _id: string;
+    firstName: string;
+    lastName: string;
+    profilePicUrl: string;
+    bio: string;
     email: string;
-    password: string;
-    role: string;
-    isConfirmed: boolean;
-    resetToken: string;
-    confirmToken: string;
-    tokenExpiration: Date;
-    shippingAddress: {
-        firstName: string,
-        lastName: string,
-        phoneNumber: string,
-        email: string,
-        country: string,
-        state: string,
-        city: string,
-        address: string
-    }
-    id?: string
+    phoneNumber: string;
+    website: string;
+    powUrl: string;
 }
