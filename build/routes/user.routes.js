@@ -12,5 +12,5 @@ const { createUser, getUser } = new user_controllers_1.default();
 //create or update a user
 router.put("/", (0, validate_middleware_1.default)(user_schemas_1.createSchema), createUser);
 //get a user
-router.get("/", getUser);
+router.get("/:_id", getUser);
 exports.default = router;
