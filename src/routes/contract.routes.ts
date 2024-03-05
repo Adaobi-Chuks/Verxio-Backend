@@ -2,11 +2,13 @@ import { Router } from "express";
 import validate from "../middlewares/validate.middleware";
 import ContractController from "../controllers/contract.controllers";
 import { createSchema } from "../schemas/contract.schemas";
+import upload from "../configs/multer.configs";
 const router = Router();
 const {
     createContract,
     getContract,
-    getAllContract
+    getAllContract,
+    uploadFile
 } = new ContractController();
 
 //create or update a user
@@ -14,6 +16,7 @@ router.put("/:_id", validate(createSchema), createContract);
 
 //get a user
 router.get("/:_id", getContract);
+router.post("/", upload.single('file'), uploadFile);
 router.get("/", getAllContract);
 
 export default router;

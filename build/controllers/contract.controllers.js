@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const contract_services_1 = __importDefault(require("../services/contract.services"));
 const getDate_utils_1 = __importDefault(require("../utils/getDate.utils"));
+const cloudinary_configs_1 = __importDefault(require("../configs/cloudinary.configs"));
 const { create, findOne, find, editById } = new contract_services_1.default();
 class ContractController {
     createContract(req, res) {
@@ -55,6 +56,27 @@ class ContractController {
                 .send({
                 success: false,
                 message: "Contract not found"
+            });
+        });
+    }
+    uploadFile(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let fileUrl;
+            if (req.file) {
+                // Upload file to Cloudinary
+                const result = yield cloudinary_configs_1.default.uploader.upload(req.file.path);
+                fileUrl = result.secure_url;
+                if (fileUrl) {
+                    return res.status(200).send({
+                        success: true,
+                        message: "File Upload Successful",
+                        file: fileUrl
+                    });
+                }
+            }
+            return res.status(409).send({
+                success: false,
+                message: "File Upload Failed"
             });
         });
     }

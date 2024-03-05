@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ContractService from "../services/contract.services";
 import formatDate from "../utils/getDate.utils";
+import cloudinary from "../configs/cloudinary.configs";
 const {
   create,
   findOne,
@@ -47,6 +48,25 @@ export default class ContractController {
         success: false,
         message: "Contract not found"
       });
+  }
+  
+  async uploadFile(req: Request, res: Response) {
+    let fileUrl;
+      if (req.file) {
+        // Upload file to Cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+        fileUrl = result.secure_url;
+        if(fileUrl) {
+          return res.status(200).send({
+            success: true,
+            message: "File Upload Successful",
+            file: fileUrl
+          });
+        }}
+        return res.status(409).send({
+          success: false,
+          message: "File Upload Failed"
+        });
   }
   
     async getAllContract(req: Request, res: Response) {
